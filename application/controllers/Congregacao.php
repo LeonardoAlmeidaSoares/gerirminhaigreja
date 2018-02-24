@@ -20,7 +20,7 @@ class Congregacao extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('navbar',$parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('listarcongregacoes',$parametros);
+		$this->load->view('congregacao/listarcongregacoes',$parametros);
 	}
 
 
@@ -44,7 +44,7 @@ class Congregacao extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('navbar', $parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('cadastrarcongregacao',$parametros);
+		$this->load->view('congregacao/cadastrarcongregacao',$parametros);
 	}
 	
 	public function cadastrar(){

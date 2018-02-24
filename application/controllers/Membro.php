@@ -11,7 +11,6 @@ class Membro extends CI_Controller {
         $this->load->model("Modelcongregacao");
 		$this->load->model("Modelmembro");
 		
-		$this->load->model("Modelmembro");		
 		$parametrosnavbar = array(
 			"membros_carteirinha" => $this->Modelmembro->getMembros()
 		);
@@ -25,7 +24,7 @@ class Membro extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('navbar',$parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('listarmembros',$parametros);
+		$this->load->view('membro/listarmembros',$parametros);
 	}
 	public function cadastro()
 	{ 
@@ -49,7 +48,7 @@ class Membro extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('navbar', $parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('cadastrarmembro',$parametros);
+		$this->load->view('membro/cadastrarmembro',$parametros);
 	}
 	public function Cadastrar() {
         session_start();
