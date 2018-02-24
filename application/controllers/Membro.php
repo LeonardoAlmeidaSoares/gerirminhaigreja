@@ -28,7 +28,7 @@ class Membro extends CI_Controller {
 	}
 	public function cadastro()
 	{ 
-		 session_start();
+		session_start();
         if (!isset($_SESSION["logged"])) {
             header("location:" . base_url("index.php/login"));
         }
@@ -54,7 +54,8 @@ class Membro extends CI_Controller {
         session_start();
         if (!isset($_SESSION["logged"])) {
             header("location:" . base_url("index.php/login"));
-        }
+        }else{
+			
 			$parametros = array(
 				"nome"=>$_POST["nome"],				
 				"nascimento"=>implode("-",array_reverse(explode("/",$_POST["nascimento"]))),				
@@ -88,26 +89,28 @@ class Membro extends CI_Controller {
             if (!empty($_FILES['userfile']['name'])) {
                 $imagem = explode(".", $_FILES['userfile']['name']);
                 $comp = date('YmdHHiiss');
-                $parametros["foto"] = "http://www.ieadplan.com.br/bancoImagens/fotomembro/" . $imagem[0] . $comp . '.' . $imagem[1];
-                $uploadfile = dirname(getcwd()) . "/bancoImagens/fotomembro/" . $imagem[0] . $comp . '.' . $imagem[1];
+                $parametros["foto"] = FOTO_MEMBRO . $imagem[0] . $comp . '.' . $imagem[1];
+                $uploadfile = dirname(getcwd()) . "/gerirminhaigreja/assets/img/fotomembro/" . $imagem[0] . $comp . '.' . $imagem[1];
                 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-                    $_SESSION["mensagem"] = "Upload ok. ";
+                    $_SESSION["mensagem"] = "Upload da foto concluído. ";
                 } else {
-                    $_SESSION["mensagem"] = "Upload não ok. ";
+                    $_SESSION["mensagem"] = "Algo deu errado durante o upload. ";
                 }
             }           
 
             $this->load->model("Modelmembro");                   
 				
             if ($this->Modelmembro->Cadastrar($parametros)) {
-                $_SESSION["mensagem"] = "Usuário cadastrado com sucesso";
+                $_SESSION["mensagem"] .= "Membro cadastrado com sucesso";
                 $_SESSION["tipoMensagem"] = "success";            
                 
             } else {
-                $_SESSION["mensagem"] = "Algo deu errado. Usuário não cadastrado";
+                $_SESSION["mensagem"] .= "Algo deu errado. Membro não cadastrado, tente novamente mais tarde e, caso o erro persista, entre em contato com o suporte técnico";
                 $_SESSION["tipoMensagem"] = "danger";
             }
 			header("location:" . base_url("index.php/membro/cadastro"));
+			
+		}
                 
             
            
