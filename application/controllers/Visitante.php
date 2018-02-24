@@ -4,71 +4,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Visitante extends CI_Controller {
 
-	public function cadastro()
+	public function __construct(){
+        parent::__construct();
 
-	{
-
-		session_start();
-
-        if (!isset($_SESSION["logged"])) {
-
-            header("location:" . base_url("index.php/login"));
-
-        }
-
-        $this->load->model("Modelutilitarios");
-
-		$parametros = array(
-
-			"estados" => $this->Modelutilitarios->getEstados()
-
-		);
-
-		$this->load->model("Modelmembro");
-
-		$parametrosnavbar = array(
-
-			"membros_carteirinha" => $this->Modelmembro->getMembros()
-
-		);
-
-
-		$this->load->view('header');
-
-		$this->load->view('navbar', $parametrosnavbar);
-
-		$this->load->view('menu');
-
-		$this->load->view('cadastrarvisitante',$parametros);
-
-	}
-
-	
-
-	public function cadastrar(){
-
-		 session_start();
+        session_start();
 
         if (!isset($_SESSION["logged"])) {
 
             header("location:" . base_url("index.php/login"));
+        }
+        
+        $this->load->model("Modelmembro");
+        $this->load->model("Modelvisitante");
+        
+    }
 
+    public function cadastro() {
+
+    	$this->load->model("Modelutilitarios");
+
+        $parametros = array(
+            "estados" => $this->Modelutilitarios->getEstados()
+        );
+
+        $parametrosnavbar = array(
+            "membros_carteirinha" => $this->Modelmembro->getMembros()
+        );
+
+
+        $this->load->view('header');
+        $this->load->view('navbar', $parametrosnavbar);
+        $this->load->view('menu');
+        $this->load->view('visitante/cadastro_visitante', $parametros);
+    }
+
+    public function cadastrar() {
+
+        session_start();
+
+        if (!isset($_SESSION["logged"])) {
+
+            header("location:" . base_url("index.php/login"));
         }
 
-		$descricao = $_POST["descricao"];
+        $descricao = $_POST["descricao"];
 
-		$this->load->model("Modelcargos");
+        $this->load->model("Modelcargos");
 
-		if ($this->Modelcargos->cadastrar($descricao)){
+        if ($this->Modelcargos->cadastrar($descricao)) {
 
-			$_SESSION["msg_ok"]="Cargo cadastrado com sucesso";
+            $_SESSION["msg_ok"] = "Cargo cadastrado com sucesso";
+        } else {
 
-		}else{
-
-			$_SESSION["msg_fail"]="Cargo n„o cadastrado, Contate o administrador";
-
-		}
-
-	}
+            $_SESSION["msg_fail"] = "Cargo n√£o cadastrado, Contate o administrador";
+        }
+    }
 
 }
