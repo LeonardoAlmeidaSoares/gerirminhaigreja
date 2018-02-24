@@ -1,0 +1,1 @@
+[21-Feb-2018 20:39:30 America/Sao_Paulo] PHP Fatal error:  Call to a member function result() on boolean in /home/areabrasil/public_html/ieadplan/admin/application/views/carteirinha.php on line 84
