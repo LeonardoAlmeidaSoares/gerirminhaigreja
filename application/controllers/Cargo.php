@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Cargo extends CI_Controller {
 	
 	public function listar(){
-		 session_start();
+	
+		session_start();
         if (!isset($_SESSION["logged"])) {
             header("location:" . base_url("index.php/login"));
         }
@@ -19,6 +20,7 @@ class Cargo extends CI_Controller {
 		$parametros = array(
 			"cargos" => $this->Modelcargos->getCargos()
 		);
+		
 		$this->load->view('header');
 		$this->load->view('navbar',$parametrosnavbar);
 		$this->load->view('menu');
