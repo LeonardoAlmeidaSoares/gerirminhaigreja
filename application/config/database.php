@@ -1,10 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 $active_group = 'servidor';
 $query_builder = TRUE;
 
 $db['servidor'] = array(
+
 	'dsn'	=> '',
 	'hostname' => 'br540.hostgator.com.br',
 	'username' => 'areabras_church',
@@ -25,6 +27,7 @@ $db['servidor'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
 
 $db['local'] = array(
 	'dsn'	=> '',
@@ -47,3 +50,4 @@ $db['local'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
