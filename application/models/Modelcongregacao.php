@@ -19,4 +19,18 @@ class Modelcongregacao extends CI_Model {
 		return $this->db->insert("congregacao",$parametros);
     }
 	
+	public function get($cod){
+		return $this->db->select("c.*, uf.codEstado as estado")
+			->from("congregacao c")
+			->join("cidade ci", "ci.codCidade = c.idCidade")			
+			->join("estado uf", "uf.codEstado = ci.codEstado")
+			->where("idCongregacao",$cod)
+			->get();
+	}
+	
+	public function Alterar($parametros,$cod) {
+       $this->db->where('idCongregacao', $cod);
+        return $this->db->update('congregacao', $parametros);
+    }
+	
 }
