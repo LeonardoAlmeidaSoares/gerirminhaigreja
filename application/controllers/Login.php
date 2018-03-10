@@ -3,36 +3,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-    public function __construct(){
-        parent::__construct();
-
-        session_start();
-        
-    }
-
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 */
 	public function index()
-	{		
+	{
+		
 		$this->load->view('header');
 		$this->load->view('login');
 	}
 	
-	public function verificarAutenticacao() {
+	 public function verificarAutenticacao() {
         session_start();       
 
-        $login = trim(filter_input(INPUT_POST, "login"));
-        $senha = md5(trim(filter_input(INPUT_POST, "senha")));
+        $login = $_POST["login"];
+        $senha = $_POST["senha"];
+
        
         if (strlen($senha) == 0) {
             $msg_erro = "Insira sua senha";
         }
-
         if (strlen($login) == 0) {
             $msg_erro = "Insira seu login";
         }
-
         if (!isset($msg_erro)) {
-            $this->load->Model("Modelcongregacao");
-
             $users = $this->db->get_where("usuario", array("login" => $login, "status" => 1));
 
             if ($users->num_rows() > 0) {
@@ -43,19 +49,13 @@ class Login extends CI_Controller {
                     $_SESSION["idUsuario"] = $linha->idUsuario;
                     $_SESSION["usuario"] = $linha->login;
                     $_SESSION["tipo"] = $linha->tipoUsuario; 
-                    $_SESSION["logged"] = true; 
-
-                    $_SESSION["dados_usuario"] = $linha;
-                    $_SESSION["dados_congregacao"] = $this->Modelcongregacao->getCongregacao($linha->idCongregacao);
-
+                    $_SESSION["logged"] = true;                     
+					$_SESSION["idInstituicao"] = 1; 
                     redirect(base_url("index.php/Welcome"), 'refresh');
                 } else {
                     $msg_erro = "Senha não confere";
-
                 }
-
             } else {
-
                 $msg_erro = "Usuário não encontrado";
             }
         }

@@ -16,13 +16,14 @@ class Cargo extends CI_Controller {
 			"membros_carteirinha" => $this->Modelmembro->getMembros()
 		);
 		
+		
 		$parametros = array(
 			"cargos" => $this->Modelcargos->getCargos()
 		);
 		$this->load->view('header');
 		$this->load->view('navbar',$parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('cargo/listarcargos',$parametros);
+		$this->load->view('listarcargos',$parametros);
 	}
 	
 	public function cadastro()
@@ -43,7 +44,7 @@ class Cargo extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('navbar',$parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('cargo/cadastrarcargo',$parametros);
+		$this->load->view('cadastrarcargo',$parametros);
 	}
 	
 	public function cadastrar(){
