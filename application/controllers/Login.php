@@ -46,6 +46,8 @@ class Login extends CI_Controller {
                 $linha = $users->row(0);
                 if ($linha->senha == $senha) {
 
+                    $this->load->Model("Modelcongregacao");
+
                     $_SESSION["idUsuario"] = $linha->idUsuario;
                     $_SESSION["usuario"] = $linha->login;
                     $_SESSION["tipo"] = $linha->tipoUsuario; 
@@ -53,10 +55,10 @@ class Login extends CI_Controller {
 					$_SESSION["idInstituicao"] = 1; 
                     redirect(base_url("index.php/Welcome"), 'refresh');
                 } else {
-                    $msg_erro = "Senha n„o confere";
+                    $msg_erro = "Senha n√£o confere";
                 }
             } else {
-                $msg_erro = "Usu·rio n„o encontrado";
+                $msg_erro = "Usu√°rio n√£o encontrado";
             }
         }
 
@@ -91,15 +93,15 @@ class Login extends CI_Controller {
             #$this->email->cc('another@another-example.com'); 
             #$this->email->bcc('them@their-example.com'); 
 
-            $this->email->subject('RecuperaÁ„o de Senha - ¡rea Brasil');
+            $this->email->subject('Recupera√ß√£o de Senha - √Årea Brasil');
             $this->email->message('Senha: ' . $senha);
             if ($this->email->send()) {
                 $_SESSION["mensagem"] = "Email enviado com sucesso <br />";
             } else {
-                $_SESSION["mensagem"] = "Algo deu errado. Email n„o enviado <br />";
+                $_SESSION["mensagem"] = "Algo deu errado. Email n√£o enviado <br />";
             }
         } else {
-            $_SESSION["mensagem"] = "Email n„o encontrado";
+            $_SESSION["mensagem"] = "Email n√£o encontrado";
         }
         echo $_SESSION["mensagem"];
         //redirect(base_url("index.php/login/"), 'refresh');
