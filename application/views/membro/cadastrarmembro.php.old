@@ -21,6 +21,19 @@
   <div class="box-header with-border">
     <h3 class="box-title">Cadastrar Membros</h3>
   </div>
+  <?php if(isset($_SESSION["mensagem"])){
+	if ($_SESSION["tipoMensagem"] == 'success'){ ?>
+		<div class="alert alert-success" role="alert">
+			<strong>Tudo certo!</strong> <?= $_SESSION["mensagem"];?>
+		</div>
+	<?php }
+		else{ ?>
+		<div class="alert alert-danger" role="alert">
+			<strong>Algo deu errado!</strong> <?= $_SESSION["mensagem"];?>
+		</div>
+	<?php}
+  }?>
+ 
   <div class="box-body">
 	<form id="demo-form2"enctype="multipart/form-data" method="POST" action="<?php echo base_url('index.php/membro/cadastrar') ?>">
 	<div class="row">
