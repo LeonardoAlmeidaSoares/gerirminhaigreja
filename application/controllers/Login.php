@@ -31,14 +31,15 @@ class Login extends CI_Controller {
         }
 
         if (!isset($msg_erro)) {
-            $this->load->Model("Modelcongregacao");
-
+            
             $users = $this->db->get_where("usuario", array("login" => $login, "status" => 1));
 
             if ($users->num_rows() > 0) {
 
                 $linha = $users->row(0);
                 if ($linha->senha == $senha) {
+
+                    $this->load->Model("Modelcongregacao");
 
                     $_SESSION["idUsuario"] = $linha->idUsuario;
                     $_SESSION["usuario"] = $linha->login;
