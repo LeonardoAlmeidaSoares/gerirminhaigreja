@@ -11,6 +11,7 @@ class Membro extends CI_Controller {
         $this->load->model("Modelcongregacao");
 		$this->load->model("Modelmembro");
 		
+		$this->load->model("Modelmembro");		
 		$parametrosnavbar = array(
 			"membros_carteirinha" => $this->Modelmembro->getMembros()
 		);

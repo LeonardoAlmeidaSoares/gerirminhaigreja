@@ -16,6 +16,7 @@ class Cargo extends CI_Controller {
 			"membros_carteirinha" => $this->Modelmembro->getMembros()
 		);
 		
+		
 		$parametros = array(
 			"cargos" => $this->Modelcargos->getCargos()
 		);

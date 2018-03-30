@@ -3,61 +3,62 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-    public function __construct(){
-        parent::__construct();
-
-        session_start();
-        
-    }
-
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 */
 	public function index()
-	{		
+	{
+		
 		$this->load->view('header');
 		$this->load->view('login');
 	}
 	
-	public function verificarAutenticacao() {
+	 public function verificarAutenticacao() {
         session_start();       
 
-        $login = trim(filter_input(INPUT_POST, "login"));
-        $senha = md5(trim(filter_input(INPUT_POST, "senha")));
+        $login = $_POST["login"];
+        $senha = $_POST["senha"];
+
        
         if (strlen($senha) == 0) {
             $msg_erro = "Insira sua senha";
         }
-
         if (strlen($login) == 0) {
             $msg_erro = "Insira seu login";
         }
-
         if (!isset($msg_erro)) {
-            
             $users = $this->db->get_where("usuario", array("login" => $login, "status" => 1));
 
             if ($users->num_rows() > 0) {
 
                 $linha = $users->row(0);
-                if ($linha->senha == $senha) {
+                if ($linha->senha == md5($senha)) {
 
                     $this->load->Model("Modelcongregacao");
 
                     $_SESSION["idUsuario"] = $linha->idUsuario;
                     $_SESSION["usuario"] = $linha->login;
                     $_SESSION["tipo"] = $linha->tipoUsuario; 
-                    $_SESSION["logged"] = true; 
-
-                    $_SESSION["dados_usuario"] = $linha;
-                    $_SESSION["dados_congregacao"] = $this->Modelcongregacao->getCongregacao($linha->idCongregacao);
-
+                    $_SESSION["logged"] = true;                     
+					$_SESSION["idInstituicao"] = 1; 
                     redirect(base_url("index.php/Welcome"), 'refresh');
                 } else {
-                    $msg_erro = "Senha n„o confere";
-
+                    $msg_erro = "Senha n√£o confere";
                 }
-
             } else {
-
-                $msg_erro = "Usu·rio n„o encontrado";
+                $msg_erro = "Usu√°rio n√£o encontrado";
             }
         }
 
@@ -92,15 +93,15 @@ class Login extends CI_Controller {
             #$this->email->cc('another@another-example.com'); 
             #$this->email->bcc('them@their-example.com'); 
 
-            $this->email->subject('RecuperaÁ„o de Senha - ¡rea Brasil');
+            $this->email->subject('Recupera√ß√£o de Senha - √Årea Brasil');
             $this->email->message('Senha: ' . $senha);
             if ($this->email->send()) {
                 $_SESSION["mensagem"] = "Email enviado com sucesso <br />";
             } else {
-                $_SESSION["mensagem"] = "Algo deu errado. Email n„o enviado <br />";
+                $_SESSION["mensagem"] = "Algo deu errado. Email n√£o enviado <br />";
             }
         } else {
-            $_SESSION["mensagem"] = "Email n„o encontrado";
+            $_SESSION["mensagem"] = "Email n√£o encontrado";
         }
         echo $_SESSION["mensagem"];
         //redirect(base_url("index.php/login/"), 'refresh');
