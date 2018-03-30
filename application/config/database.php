@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$active_group = 'servidor';
+$active_group = 'local';
 $query_builder = TRUE;
 
 $db['servidor'] = array(
@@ -34,7 +34,7 @@ $db['local'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'areabras_church',
+	'database' => 'ki_church',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

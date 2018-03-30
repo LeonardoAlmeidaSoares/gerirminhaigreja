@@ -44,7 +44,7 @@ class Login extends CI_Controller {
             if ($users->num_rows() > 0) {
 
                 $linha = $users->row(0);
-                if ($linha->senha == $senha) {
+                if ($linha->senha == md5($senha)) {
 
                     $this->load->Model("Modelcongregacao");
 
