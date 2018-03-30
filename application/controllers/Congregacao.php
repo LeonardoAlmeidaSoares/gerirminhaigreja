@@ -9,8 +9,10 @@ class Congregacao extends CI_Controller {
             header("location:" . base_url("index.php/login"));
         }
 		$this->load->model("Modelcongregacao");
+		$this->load->model("Modelutilitarios");
 		$parametros = array(
-			"congregacoes" => $this->Modelcongregacao->getCongregacoes()
+			"congregacoes" => $this->Modelcongregacao->getCongregacoes(),
+			"estados" => $this->Modelutilitarios->getEstados()
 		);
 		
 		$this->load->model("Modelmembro");		
@@ -20,7 +22,7 @@ class Congregacao extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('navbar',$parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('listarcongregacoes',$parametros);
+		$this->load->view('congregacao/listarcongregacoes',$parametros);
 	}
 
 
@@ -44,7 +46,7 @@ class Congregacao extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('navbar', $parametrosnavbar);
 		$this->load->view('menu');
-		$this->load->view('cadastrarcongregacao',$parametros);
+		$this->load->view('congregacao/cadastrarcongregacao',$parametros);
 	}
 	
 	public function cadastrar(){
@@ -85,10 +87,8 @@ class Congregacao extends CI_Controller {
         $this->load->model("Modelcongregacao");
         $post = $this->Modelcongregacao->get($_POST["cod"]);
         foreach ($post->result() as $row) {
-            echo $row->nome . '&' . $row->nascimento . '&' . $row->logradouro . '&' . $row->numero . '&' . $row->bairro . '&' . $row->complemento . 
-			'&' . $row->idCidade . '&' . $row->cep . '&' . $row->telefone . '&' . $row->email . '&' . $row->cpf . '&' . $row->rg . '&' . $row->batismo
-			. '&' . $row->admissao . '&' . $row->idNaturalidade . '&' . $row->sexo . '&' . $row->cor . '&' . $row->idCargo . '&' . $row->idCongregacao . 
-			'&' . $row->foto . '&' . $row->estadoNatural . "&" . $row->estadoAtual;
+            echo $row->estado . '&' . $row->idCidade . '&' . $row->descricao . '&' . $row->logradouro . '&' . $row->numero . '&' . $row->bairro . '&' . $row->complemento . 
+			'&' . $row->cep . '&' . $row->telefone . '&' . $row->email;
         }
 	}
 	
