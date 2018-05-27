@@ -15,7 +15,7 @@ class Modelmembro extends CI_Model {
     }
 	
 	public function getMembros(){
-		return $this->db->select("*")->from("membro")->get();
+		return $this->db->get("membro");
 	}
 	
 	public function getMembro($codMembro){
@@ -34,7 +34,8 @@ class Modelmembro extends CI_Model {
 			->join("cidade c1", "c1.codCidade = m.idNaturalidade")
 			->join("cidade c2", "c2.codCidade = m.idCidade")
 			->join("estado uf1","uf1.codEstado = c1.codEstado")
-			->join("estado uf2", "uf2.codEstado = c2.codEstado")						->where("idMembro in ($parametros)",null)
+			->join("estado uf2", "uf2.codEstado = c2.codEstado")						
+			->where("idMembro in ($parametros)",null)
 			->get();
 	}
 	

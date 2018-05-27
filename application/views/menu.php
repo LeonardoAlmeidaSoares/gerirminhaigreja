@@ -24,7 +24,7 @@
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MENU PRINCIPAL</li>
+            <li class="header">Secretaria</li>
             <li class="treeview">
               <a href="<?php echo base_url();?>">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
@@ -66,7 +66,7 @@
               </ul>
             </li>
 			
-			<li class="treeview">
+			<!--li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i>
                 <span>Congregados</span>
@@ -76,7 +76,7 @@
                 <li><a href="<?php echo base_url("index.php/congregado/cadastro");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
                 <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Gerenciar</a></li>
               </ul>
-            </li>
+            </li-->
 			
 			<li class="treeview">
               <a href="#">
@@ -89,7 +89,127 @@
                 <li><a href="<?php echo base_url("index.php/congregacao/listar");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>
               </ul>
             </li>
-			</ul>			<ul class="sidebar-menu">				<li class="header">ADMIN SITE</li>				<li class="treeview">				  <a href="<?php echo base_url();?>">					<i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>				  </a>				</li>				<li class="treeview">					<a href="#">						<i class="fa fa-image"></i>						<span>Slides</span>						<i class="fa fa-angle-left pull-right"></i>					</a>					<ul class="treeview-menu">						<li><a href="<?php echo base_url("index.php/site/cadastrarSlides");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>						<li><a href="<?php echo base_url("index.php/site/listarSlides");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>					</ul>				</li>								<li class="treeview">					<a href="#">						<i class="fa fa-newspaper-o"></i>						<span>Notícias</span>						<i class="fa fa-angle-left pull-right"></i>					</a>					<ul class="treeview-menu">						<li><a href="<?php echo base_url("index.php/site/cadastrarNoticia");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>						<li><a href="<?php echo base_url("index.php/site/listarNoticias");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>					</ul>				</li>								<li class="treeview">					<a href="#">						<i class="fa fa-tags"></i>						<span>Posts</span>						<i class="fa fa-angle-left pull-right"></i>					</a>					<ul class="treeview-menu">						<li><a href="<?php echo base_url("index.php/site/cadastrarPost");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>						<li><a href="<?php echo base_url("index.php/site/listarPosts");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>					</ul>				</li>								<li class="treeview">					<a href="#">						<i class="fa fa-calendar"></i>						<span>Eventos</span>						<i class="fa fa-angle-left pull-right"></i>					</a>					<ul class="treeview-menu">						<li><a href="<?php echo base_url("index.php/site/cadastrarEvento");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>						<li><a href="<?php echo base_url("index.php/site/listarEventos");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>					</ul>				</li>								<li class="treeview">					<a href="#">						<i class="fa fa-home"></i>						<span>Institucional</span>						<i class="fa fa-angle-left pull-right"></i>					</a>					<ul class="treeview-menu">						<li><a href="<?php echo base_url("index.php/site/institucional");?>"><i class="fa fa-circle-o"></i> Gerir</a></li>											</ul>				</li>			</ul>
+			</ul>	
+			
+			<ul class="sidebar-menu">
+				<li class="header">Financeiro</li>
+				<li class="treeview">
+					<a href="<?php echo base_url();?>">
+						<i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+					</a>              
+				</li>         
+				<li class="treeview">
+					<a href="#">
+						<i class="fa fa-user"></i>
+						<span>Entradas</span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?php echo base_url("index.php/entradas/cadastro");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
+						<li><a href="<?php echo base_url("index.php/entradas/listar");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="sidebar-menu">				
+				<li class="header">ADMIN SITE</li>				
+				<li class="treeview">
+					<a href="<?php echo base_url();?>">	
+						<i class="fa fa-dashboard"></i> 
+						<span>Dashboard</span>
+						<i class="fa fa-angle-left pull-right"></i>				  
+					</a>				
+				</li>				
+				<li class="treeview">					
+					<a href="#">						
+						<i class="fa fa-image"></i>						
+						<span>Slides</span>						
+						<i class="fa fa-angle-left pull-right"></i>					
+					</a>					
+					<ul class="treeview-menu">						
+						<li>
+							<a href="<?php echo base_url("index.php/site/cadastrarSlides");?>">
+								<i class="fa fa-circle-o"></i> Cadastrar
+							</a>
+						</li>						
+						<li>
+							<a href="<?php echo base_url("index.php/site/listarSlides");?>">
+								<i class="fa fa-circle-o"></i> Listar/Gerenciar
+							</a>
+						</li>					
+					</ul>				
+				</li>								
+				<li class="treeview">					
+					<a href="#">						
+						<i class="fa fa-newspaper-o"></i>						
+						<span>Notícias</span>						
+						<i class="fa fa-angle-left pull-right"></i>					
+					</a>					
+					<ul class="treeview-menu">						
+						<li>
+							<a href="<?php echo base_url("index.php/site/cadastrarNoticia");?>">
+								<i class="fa fa-circle-o"></i> Cadastrar
+							</a>
+						</li>						
+						<li>
+							<a href="<?php echo base_url("index.php/site/listarNoticias");?>">
+								<i class="fa fa-circle-o"></i> Listar/Gerenciar
+							</a>
+						</li>					
+					</ul>				
+				</li>								
+				<li class="treeview">					
+					<a href="#">						
+						<i class="fa fa-tags"></i>						
+						<span>Posts</span>						
+						<i class="fa fa-angle-left pull-right"></i>					
+					</a>					
+					<ul class="treeview-menu">						
+						<li>
+							<a href="<?php echo base_url("index.php/site/cadastrarPost");?>">
+								<i class="fa fa-circle-o"></i> Cadastrar
+							</a>
+						</li>						
+						<li>
+							<a href="<?php echo base_url("index.php/site/listarPosts");?>">
+								<i class="fa fa-circle-o"></i> Listar/Gerenciar
+							</a>
+						</li>					
+					</ul>				
+				</li>								
+				<li class="treeview">					
+					<a href="#">						
+						<i class="fa fa-calendar"></i>						
+						<span>Eventos</span>						
+						<i class="fa fa-angle-left pull-right"></i>					
+					</a>					
+					<ul class="treeview-menu">						
+						<li>
+							<a href="<?php echo base_url("index.php/site/cadastrarEvento");?>">
+								<i class="fa fa-circle-o"></i> Cadastrar
+							</a>
+						</li>						
+						<li>
+							<a href="<?php echo base_url("index.php/site/listarEventos");?>">
+								<i class="fa fa-circle-o"></i> Listar/Gerenciar
+							</a>
+						</li>					
+					</ul>				
+				</li>								
+				<li class="treeview">					
+					<a href="#">						
+						<i class="fa fa-home"></i>						
+						<span>Institucional</span>						
+						<i class="fa fa-angle-left pull-right"></i>					
+					</a>					
+					<ul class="treeview-menu">						
+						<li>
+							<a href="<?php echo base_url("index.php/site/institucional");?>">
+								<i class="fa fa-circle-o"></i> Gerir
+							</a>
+						</li>											
+					</ul>				
+				</li>			
+			</ul>
         </section>
         <!-- /.sidebar -->
       </aside>
