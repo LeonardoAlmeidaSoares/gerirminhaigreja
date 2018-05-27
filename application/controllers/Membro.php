@@ -102,7 +102,7 @@ class Membro extends CI_Controller {
             $_SESSION["tipoMensagem"] = "success";
         } else {
             $_SESSION["mensagem"] = "Algo deu errado. Usuário não cadastrado";
-            $_SESSION["tipoMensagem"] = "danger";
+            $_SESSION["tipoMensagem"] = "error";
         }
         header("location:" . base_url("index.php/membro/cadastro"));
 
@@ -161,7 +161,7 @@ class Membro extends CI_Controller {
             $_SESSION["tipoMensagem"] = "success";
         } else {
             $_SESSION["mensagem"] .= "Algo deu errado. Usuário não cadastrado";
-            $_SESSION["tipoMensagem"] = "danger";
+            $_SESSION["tipoMensagem"] = "error";
         }
         header("location:" . base_url("index.php/membro/listar"));
 
@@ -183,6 +183,27 @@ class Membro extends CI_Controller {
             "membros" => $this->membro->getMembrosCarteirinha($x)
         );
         $this->load->view('carteirinha', $parametros);
+    }
+    
+    public function congregacao($codCongregacao = 0) {
+
+        $this->load->model("Modelcongregacao");
+        $this->load->model("Modelutilitarios");
+        
+        $parametrosnavbar = array(
+            "membros_carteirinha" => $this->membro->getMembros()
+        );
+
+        $parametros = array(
+            "membros" => $this->membro->getMembros($codCongregacao),
+            "estados" => $this->Modelutilitarios->getEstados(),
+            "cargos" => $this->Modelutilitarios->getCargos(),
+            "cong" => $this->Modelcongregacao->getCongregacoes()
+        );
+        $this->load->view('header');
+        $this->load->view('navbar', $parametrosnavbar);
+        $this->load->view('menu');
+        $this->load->view('membro/listarmembros', $parametros);
     }
 
 }

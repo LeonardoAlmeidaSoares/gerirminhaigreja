@@ -14,8 +14,10 @@ class Modelmembro extends CI_Model {
         return $this->db->update('membro', $parametros);
     }
 	
-	public function getMembros(){
-		return $this->db->get("membro");
+	public function getMembros($codCongregacao = 0){
+		return ($codCongregacao > 0)
+                        ? $this->db->get_where("membro", array("idCongregacao" => $codCongregacao))
+                        : $this->db->get("membro");
 	}
 	
 	public function getMembro($codMembro){

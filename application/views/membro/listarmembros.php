@@ -503,27 +503,25 @@
 
             $("[data-mask]").inputmask();
 
-            $(".edit").css("cursor", "pointer").click(function () {
+            $('#example2').on('click', '.edit', function () {
                 var cod = $(this).attr("u");
                 $('.form-control').attr("disabled", false);
                 $('.editar').attr("disabled", true);
                 getData(cod);
             });
-
-            $(".fa-eye").css("cursor", "pointer").click(function () {
+            $('#example2').on('click', '.fa-eye', function () {
                 var cod = $(this).attr("u");
                 $('.form-control').attr("disabled", true);
                 $('.editar').attr("disabled", false);
                 getData(cod);
             });
-
-            $(".editar").css("cursor", "pointer").click(function () {
+            
+            $('#example2').on('click', '.editar', function () {
                 $('.form-control').attr("disabled", false);
             });
 
-            $(".btnRemove").css("cursor", "pointer").click(function () {
+            $('#example2').on('click', '.btnRemove', function () {
                 var cod = $(this).attr("u");
-                //alert($(this).children().attr("codImg"));
                 var r = confirm("Deseja INATIVAR o membro?");
                 if (r == true) {
                     $.ajax({
@@ -543,7 +541,8 @@
                 }
             });
 
-            $(".btnAtivar").css("cursor", "pointer").click(function () {
+            $('#example2').on('click', '.btnAtivar', function () {
+            //$(".btnAtivar").css("cursor", "pointer").click(function () {
                 var cod = $(this).attr("u");
                 //alert($(this).children().attr("codImg"));
                 var r = confirm("Deseja ATIVAR o registro?");
@@ -565,7 +564,7 @@
                 }
             });
 
-
-
         });
     </script>
+    
+    

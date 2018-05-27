@@ -33,7 +33,16 @@
 
                             </div>
 
-                            <div class="col-md-6">				
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                    <input type="text" name="matricula" id="matricula" class="form-control" placeholder="Matrícula" required="required">
+                                </div>
+
+                            </div>
+                            
+                            
+                            <div class="col-md-3">				
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
                                     <input type="text" name="nascimento" id="nascimento" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
@@ -45,38 +54,96 @@
                     <br />
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-6">
+
+
+                            <div class="col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
                                     <input type="text" name="logradouro" id="logradouro" class="form-control" placeholder="Logradouro">
                                 </div>
                             </div>
-                            <div class="col-md-6">    
+                            <div class="col-md-3">    
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
                                     <input type="text" name="numero" id="numero" class="form-control" placeholder="Número">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-6">
+                            
+                            <div class="col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
                                     <input type="text" name="bairro" id="bairro" class="form-control" placeholder="Bairro">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            
+                            <div class="col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
                                     <input type="text" name="complemento" id="complemento" class="form-control" placeholder="Complemento">
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <br />	<div class="row">		<div class="col-md-12">			<div class="col-md-6">				<div class="input-group">				  <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></span>				  <input type="text" name="pai" id="pai" class="form-control" placeholder="Nome do Pai">				</div>			</div>			<div class="col-md-6">				<div class="input-group">				  <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></span>				  <input type="text" name="mae" id="mae" class="form-control" placeholder="Nome da Mãe">				</div>			</div>		</div>	</div>	    <br />		<div class="row">		<div class="col-md-12">			<div class="col-md-6">				<div class="form-group">				 <select class="form-control" id="estadocivil" name="estadocivil">    					<optgroup label="Estado Civil">                 					<option value="Solteiro(a)">Solteiro(a)</option>                   					<option value="Casado(a)">Casado(a)</option>                   					<option value="Viúvo(a)">Viúvo(a)</option>                   					<option value="Disquitado(a)">Disquitado(a)</option>   					</optgroup>				  </select>				</div>			</div>					</div>	</div>	    <br />
+                    <br />
+                   
+                    <div class="row">		
+                        <div class="col-md-12">			
+                            
+                            <div class="col-md-6">				
+                                <div class="input-group">				  
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+
+                                    </span>				  
+                                    <input type="text" name="pai" id="pai" class="form-control" placeholder="Nome do Pai">				
+                                </div>			
+                            </div>			
+                            <div class="col-md-6">				
+                                <div class="input-group">				  
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                                    </span>				  
+                                    <input type="text" name="mae" id="mae" class="form-control" placeholder="Nome da Mãe">				
+                                </div>			
+                            </div>		
+                        </div>	
+                    </div>	    
+                    <br />		
+                    <div class="row">		
+                        <div class="col-md-12">			
+                            <div class="col-md-6">				
+                                <div class="form-group">				 
+                                    <select class="form-control" id="estadocivil" name="estadocivil">
+                                        <optgroup label="Estado Civil">
+                                            <option value="Solteiro(a)">Solteiro(a)</option>
+                                            <option value="Casado(a)">Casado(a)</option>
+                                            <option value="Viúvo(a)">Viúvo(a)</option>
+                                            <option value="Disquitado(a)">Disquitado(a)</option>
+                                        </optgroup>				  
+                                    </select>				
+                                </div>			
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Sexo: </label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="sexo" id="optionsRadios1" value="F" checked>
+                                            Feminino
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="sexo" id="optionsRadios2" value="M">
+                                            Masculino
+                                        </label>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>	
+                    </div>	    
+                    <br />
                     <div class="row">		
                         <div class="col-md-12">
                             <h5>Cidade (selecione o estado primeiro) </h5>
@@ -88,7 +155,8 @@
                                             foreach ($estados->result() as $row) {
                                                 echo "<option value='$row->codEstado'>$row->descricao</option>";
                                             }
-                                            ?>					</optgroup>
+                                            ?>					
+                                        </optgroup>
                                     </select>
                                 </div>
                             </div>
@@ -114,7 +182,7 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span></span>
-                                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask>
+                                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9 9999-9999"' data-mask>
                                 </div>
                             </div>
                         </div>
@@ -188,28 +256,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">		
-                        <div class="col-md-12">			
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Sexo</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="sexo" id="optionsRadios1" value="F" checked>
-                                            Feminino
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="sexo" id="optionsRadios2" value="M">
-                                            Masculino
-                                        </label>
-                                    </div>      
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <input type="hidden" name="txtCod" id="txtCod">
 
                     <div class="row">		
@@ -345,3 +391,14 @@
 
     });
 </script>
+<?php if (isset($_SESSION["mensagem"])) {
+    ;
+    ?>
+    <script>
+        swal('Cadastro ', '<?= $_SESSION["mensagem"]; ?>', '<?= $_SESSION["tipoMensagem"]; ?>');
+    </script>
+    <?php
+    unset($_SESSION["mensagem"]);
+    unset($_SESSION["tipoMensagem"]);
+}
+?>

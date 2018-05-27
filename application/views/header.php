@@ -43,6 +43,8 @@
     <script src="<?php echo base_url("assets/plugins/fastclick/fastclick.min.js");?>"></script>
 	
     <script src="<?php echo base_url("assets/plugins/iCheck/icheck.min.js");?>"></script>
+    
+    <script src="https://unpkg.com/sweetalert2@7.21.0/dist/sweetalert2.all.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url("assets/js/app.min.js");?>"></script>
     <!-- AdminLTE for demo purposes -->

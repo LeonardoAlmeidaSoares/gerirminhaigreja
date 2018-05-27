@@ -8,9 +8,9 @@ $query_builder = TRUE;
 $db['servidor'] = array(
 
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'br540.hostgator.com.br',
+	'username' => 'areabras_church',
+	'password' => 'xj3xx296',
 	'database' => 'areabras_church',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
