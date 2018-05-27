@@ -78,14 +78,11 @@ class Membro extends CI_Controller {
 				"idCongregacao"=>$_POST["congregacao"],				
 				"estadocivil"=>$_POST["estadocivil"],				
 				"pai"=>$_POST["pai"],				
-				"mae"=>$_POST["mae"]				
-			
+				"mae"=>$_POST["mae"],				
+				"matricula" => $_POST["matricula"]
 			);
 			//var_dump($parametros);
-            
-           
-
-           
+                  
             if (!empty($_FILES['userfile']['name'])) {
                 $imagem = explode(".", $_FILES['userfile']['name']);
                 $comp = date('YmdHHiiss');
@@ -119,18 +116,25 @@ class Membro extends CI_Controller {
     }
 	
 	public function getMembro(){
-		 session_start();
+
+		session_start();
+
         if (!isset($_SESSION["logged"])) {
             header("location:" . base_url("index.php/login"));
         }
+
         $this->load->model("Modelmembro");
         $post = $this->Modelmembro->getMembro($_POST["cod"]);
-        foreach ($post->result() as $row) {
-            echo $row->nome . '&' . $row->nascimento . '&' . $row->logradouro . '&' . $row->numero . '&' . $row->bairro . '&' . $row->complemento . 
-			'&' . $row->idCidade . '&' . $row->cep . '&' . $row->telefone . '&' . $row->email . '&' . $row->cpf . '&' . $row->rg . '&' . $row->batismo
-			. '&' . $row->admissao . '&' . $row->idNaturalidade . '&' . $row->sexo . '&' . $row->cor . '&' . $row->idCargo . '&' . $row->idCongregacao . 
-			'&' . $row->foto . '&' . $row->estadoNatural . "&" . $row->estadoAtual;
-        }
+        $dados = $post->result_array();
+
+        //echo "DATA = " + $dados[0]->idCidade;
+
+        //$dados["cidades"] = $this->db->query("select * from cidade where codEstado = (select codEstado from cidade where codCidade = " . $dados[0]["idCidade"] . ")");
+
+        //echo $this->db->last_query();
+
+        echo json_encode($dados);
+
 	}
 	
 	public function Alterar() {
@@ -157,7 +161,8 @@ class Membro extends CI_Controller {
 				"sexo"=>$_POST["sexo"],				
 				"cor"=>$_POST["cor"],				
 				"idCargo"=>$_POST["cargo"],				
-				"idCongregacao"=>$_POST["congregacao"]				
+				"idCongregacao"=>$_POST["congregacao"],
+				"matricula" => $_POST["matricula"]				
 			
 			);
 			//var_dump($parametros);

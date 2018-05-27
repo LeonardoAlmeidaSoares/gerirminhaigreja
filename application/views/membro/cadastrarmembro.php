@@ -324,7 +324,7 @@
                         idEstado: idestado
                     },
                     error: function (request, status, error) {
-                        alert(request.responseText);
+                        alert("Houve um problema ao carregar as cidades, por favor, tente novamente");
                     },
                     type: "POST",
                     cache: false
