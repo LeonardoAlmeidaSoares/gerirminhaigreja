@@ -1,37 +1,37 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
-		
-		$this->load->view('header');
-		$this->load->view('login');
-	}
-	
-	 public function verificarAutenticacao() {
-        session_start();       
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     * 		http://example.com/index.php/welcome
+     * 	- or -
+     * 		http://example.com/index.php/welcome/index
+     * 	- or -
+     * Since this controller is set as the default controller in
+     * config/routes.php, it's displayed at http://example.com/
+     *
+     * So any other public methods not prefixed with an underscore will
+     * map to /index.php/welcome/<method_name>
+     * @see http://codeigniter.com/user_guide/general/urls.html
+     */
+    public function index() {
+
+        $this->load->view('header');
+        $this->load->view('login');
+    }
+
+    public function verificarAutenticacao() {
+        session_start();
 
         $login = $_POST["login"];
         $senha = $_POST["senha"];
 
-       
+
         if (strlen($senha) == 0) {
             $msg_erro = "Insira sua senha";
         }
@@ -50,9 +50,9 @@ class Login extends CI_Controller {
 
                     $_SESSION["idUsuario"] = $linha->idUsuario;
                     $_SESSION["usuario"] = $linha->login;
-                    $_SESSION["tipo"] = $linha->tipoUsuario; 
-                    $_SESSION["logged"] = true;                     
-					$_SESSION["idInstituicao"] = 1; 
+                    $_SESSION["tipo"] = $linha->tipoUsuario;
+                    $_SESSION["logged"] = true;
+                    $_SESSION["idInstituicao"] = 1;
                     redirect(base_url("index.php/Welcome"), 'refresh');
                 } else {
                     $msg_erro = "Senha não confere";
@@ -106,16 +106,17 @@ class Login extends CI_Controller {
         echo $_SESSION["mensagem"];
         //redirect(base_url("index.php/login/"), 'refresh');
     }
-	
-	public function verificaEmail(){
-		
-		session_start();
-		$this->load->Model("modelutilitarios");
-		$users = $this->modelutilitarios->verificaEmail($_POST['email']);
+
+    public function verificaEmail() {
+
+        session_start();
+        $this->load->Model("modelutilitarios");
+        $users = $this->modelutilitarios->verificaEmail($_POST['email']);
         if ($users->num_rows() > 0) {
-			 echo 1;
-		}else{
-			 echo 0;
-		}
-	}
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+
 }
