@@ -160,7 +160,6 @@ class Membro extends CI_Controller {
 				"idCongregacao"=>$_POST["congregacao"]				
 			
 			);
-			//var_dump($parametros);
             if (!empty($_FILES['userfile']['name'])) {
                 $imagem = explode(".", $_FILES['userfile']['name']);
                 $comp = date('YmdHHiiss');
