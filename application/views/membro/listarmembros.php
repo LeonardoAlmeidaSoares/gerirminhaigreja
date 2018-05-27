@@ -35,6 +35,7 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <td>Matrícula</td>
                                     <th>Nome</th>
                                     <th>Telefone</th>
                                     <th>Email</th>
@@ -43,19 +44,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                foreach ($membros->result() as $row) {
-                                    if ($row->status == 0) {
-                                        $style = "color:#ccc;";
-                                    } else {
-                                        $style = "";
-                                    }
-                                    ?>
-                                    <tr style="<?php echo $style; ?>">
+                                <?php foreach ($membros->result() as $row) {?>
+                                    <tr style="<?= ($row->status == 0)?"color:#ccc": ""; ?>">
+                                        <td><?php echo str_pad($row->matricula, 6, "0", STR_PAD_LEFT)?></td>
                                         <td><?php echo $row->nome; ?></td>
                                         <td><?php echo $row->telefone; ?></td>
                                         <td><?php echo $row->email; ?></td>
-                                        <!--td><img src="<?php #echo $row->foto;  ?>" style="width:80px;"></td-->
                                         <td>
                                             <i class="fa fa-eye" u="<?php echo $row->idMembro; ?>" title="Visualizar" data-toggle="modal" data-target="#myModal"></i>&nbsp;
                                             <i class="fa fa-edit edit" u="<?php echo $row->idMembro; ?>" title="Editar" data-toggle="modal" data-target="#myModal"></i>&nbsp;
@@ -64,12 +58,9 @@
                                             <?php } else { ?>
                                                 <i class="fa fa-remove btnRemove" u="<?php echo $row->idMembro; ?>" title="Inativar"></i>									
                                             <?php } ?>
-
                                         </td>
                                     </tr>
-                                    <?php
-                                }
-                                ?>
+                                    <?php } ?>
 
                             </tbody>
                         </table>                      
@@ -166,7 +157,13 @@
                             <h5>Cidade (selecione o estado primeiro) </h5>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="txtEstado" name="estado"></input>
+                                    <select type="text" class="form-control" id="txtEstado" name="estado">
+                                        <?php
+                                        foreach ($estados->result() as $row) {
+                                            echo "<option value='$row->codEstado'>$row->descricao</option>";
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -246,7 +243,7 @@
                             <h5>Natural de: </h5>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <select class="form-control" id="estadoNatual" name="txtEstadoNatual">      
+                                    <select class="form-control" id="estadoNatural" name="txtEstadoNatural">      
                                         <option value="0">Selecione...</option>
                                         <?php
                                         foreach ($estados->result() as $row) {
@@ -376,6 +373,10 @@
         }
 
         function getData(cod) {
+        
+            $("#txtCidade option").remove();
+            $("#txtNaturalidade option").remove();
+        
             $.ajax({
                 url: "<?php echo base_url("index.php/membro/getMembro"); ?>",
                 datatype: 'json',
@@ -390,12 +391,8 @@
             }).success(function (html) {
 
                 var res = JSON.parse(html);
-
-                console.debug(res);
-
-
-                //$("#txtEstado").val(idEstadoNaturalidade);
-
+                
+                //$("#matricula").val(res[0].matricula);
                 $("#nome").val(res[0].nome);
                 $("#nascimento").val(res[0].nascimento.split('-').reverse().join('/'));
                 $("#logradouro").val(res[0].logradouro);
@@ -413,12 +410,27 @@
                 $("#batismo").val(res[0].batismo.split('-').reverse().join('/'));
                 $("#admissao").val(res[0].admissao.split('-').reverse().join('/'));
                 $("#img_membro").attr("src", res[0].foto);
-                $("#txtCod").val(res[0].cod);
+                $("#txtCod").val(res[0].idMembro);
                 $('input:radio[value=' + res[0].sexo + ']').prop('checked', true);
-                $("#estadoNatual").val(res[0].idEstadoAtual);
-                //setarCidade(idEstadoAtual, "txtCidade", res[0].idCidade);
-                //setarCidade(idEstadoNaturalidade, "txtNaturalidade", res[0].idNaturalidade);
-
+                
+                $.each(res["cidades"], function($index, $value){
+                    $("#txtCidade").append(
+                        "<option value='" + $value["codCidade"]+ "'>"+$value["descricao"]+"</option>"
+                    );
+                });
+                
+                $("#txtEstado").val(res["cidades"][0].codEstado);
+                $("#txtCidade").val(res[0].idCidade);
+                
+                $.each(res["cidades"], function($index, $value){
+                    $("#txtNaturalidade").append(
+                        "<option value='" + $value["codCidade"]+ "'>"+$value["descricao"]+"</option>"
+                    );
+                });
+                
+                $("#estadoNatural").val(res["cidades"][0].codEstado);
+                $("#txtNaturalidade").val(res[0].idCidade);
+                
             });
         }
 
