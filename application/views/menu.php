@@ -105,8 +105,8 @@
 						<i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="<?php echo base_url("index.php/entradas/cadastro");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
-						<li><a href="<?php echo base_url("index.php/entradas/listar");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>
+						<li><a href="<?php echo base_url("index.php/entrada/cadastro");?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
+						<li><a href="<?php echo base_url("index.php/entrada/listar");?>"><i class="fa fa-circle-o"></i> Listar/Gerenciar</a></li>
 					</ul>
 				</li>
 			</ul>

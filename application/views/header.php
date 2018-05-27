@@ -54,6 +54,7 @@
     <script src="<?php echo base_url("assets/plugins/input-mask/jquery.inputmask.date.extensions.js");?>"></script>
     <script src="<?php echo base_url("assets/plugins/input-mask/jquery.inputmask.extensions.js");?>"></script>
     <script src="<?php echo base_url("assets/plugins/select2/select2.full.min.js");?>"></script>
+    <script src="<?php echo base_url("assets/js/jquery.mask.js");?>"></script>
 	
     <script src="<?php echo base_url("assets/plugins/datatables/jquery.dataTables.min.js");?>"></script>
     <script src="<?php echo base_url("assets/plugins/datatables/dataTables.bootstrap.min.js");?>"></script>
