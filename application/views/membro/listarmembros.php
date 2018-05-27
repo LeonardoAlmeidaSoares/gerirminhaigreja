@@ -57,8 +57,8 @@
 								<td><?php echo $row->email; ?></td>
 								<!--td><img src="<?php #echo $row->foto; ?>" style="width:80px;"></td-->
 								<td>
-									<i class="fa fa-eye" u="<?php echo $row->idMembro; ?>" title="Visualizar" data-toggle="modal" data-target="#myModal"></i>&nbsp
-									<i class="fa fa-edit edit" u="<?php echo $row->idMembro; ?>" title="Editar" data-toggle="modal" data-target="#myModal"></i>&nbsp
+									<i class="fa fa-eye" u="<?php echo $row->idMembro; ?>" title="Visualizar" data-toggle="modal" data-target="#myModal"></i>&nbsp;
+									<i class="fa fa-edit edit" u="<?php echo $row->idMembro; ?>" title="Editar" data-toggle="modal" data-target="#myModal"></i>&nbsp;
 									<?php if ($row->status==0){ ?>
 										<i class="fa fa-check btnAtivar" u="<?php echo $row->idMembro; ?>" title="Ativar"></i>	
 									<?php } else { ?>
@@ -166,14 +166,7 @@
 			<h5>Cidade (selecione o estado primeiro) </h5>
 			<div class="col-md-6">
 				<div class="form-group">
-				  <select class="form-control" id="txtEstado" name="estado">      
-					<option value="0">Estado</option>
-                    <?php
-                    foreach ($estados->result() as $row) {
-                        echo "<option value='$row->codEstado'>$row->descricao</option>";
-                    }
-                    ?>
-				  </select>
+				  <input type="text" class="form-control" id="txtEstado" name="estado"></input>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -395,57 +388,37 @@
 				type: "POST",
 				cache: false
 			}).success(function (html) { 
-				//$(".frmCadasr").show("slow");
 				
-				var res = html.split("&");
+				var res = JSON.parse(html);
 				
-				var nome=res[0]; 
-				var nascimento=res[1];
-				var logradouro=res[2];
-				var numero=res[3];
-				var bairro=res[4];
-				var complemento=res[5];
-				var idCidade=res[6];
-				var cep=res[7];
-				var telefone=res[8];
-				var email=res[9];
-				var cpf=res[10];
-				var rg=res[11];
-				var batismo=res[12];
-				var admissao=res[13];
-				var idNaturalidade=res[14];
-				var sexo=res[15];
-				var cor=res[16];
-				var idCargo=res[17];
-				var idCongregacao=res[18];
-				var foto=res[19];
-				var idEstadoNaturalidade=res[20];
-				var idEstadoAtual=res[21];
+				console.debug(res);
+
+
+				//$("#txtEstado").val(idEstadoNaturalidade);
 				
-				$("#txtEstado").val(idEstadoNaturalidade);
-				
-				$("#nome").val(nome);
-				$("#nascimento").val(nascimento.split('-').reverse().join('/'));
-				$("#logradouro").val(logradouro);
-				$("#numero").val(numero);
-				$("#bairro").val(bairro);
-				$("#complemento").val(complemento);
-				$("#congregacao").val(idCongregacao);
-				$("#cor").val(cor);
-				$("#cargo").val(idCargo);
-				$("#cep").val(cep);
-				$("#telefone").val(telefone);
-				$("#email").val(email);
-				$("#cpf").val(cpf);
-				$("#rg").val(rg);
-				$("#batismo").val(batismo.split('-').reverse().join('/'));
-				$("#admissao").val(admissao.split('-').reverse().join('/'));	
-				$("#img_membro").attr("src",foto);
-				$("#txtCod").val(cod);
-				$('input:radio[value='+sexo+']').prop('checked', true);
-				$("#estadoNatual").val(idEstadoAtual);
-				setarCidade(idEstadoAtual, "txtCidade", idCidade);
-				setarCidade(idEstadoNaturalidade, "txtNaturalidade", idNaturalidade);
+				$("#nome").val(res[0].nome);
+				$("#nascimento").val(res[0].nascimento.split('-').reverse().join('/'));
+				$("#logradouro").val(res[0].logradouro);
+				$("#numero").val(res[0].numero);
+				$("#bairro").val(res[0].bairro);
+				$("#complemento").val(res[0].complemento);
+				$("#congregacao").val(res[0].idCongregacao);
+				$("#cor").val(res[0].cor);
+				$("#cargo").val(res[0].idCargo);
+				$("#cep").val(res[0].cep);
+				$("#telefone").val(res[0].telefone);
+				$("#email").val(res[0].email);
+				$("#cpf").val(res[0].cpf);
+				$("#rg").val(res[0].rg);
+				$("#batismo").val(res[0].batismo.split('-').reverse().join('/'));
+				$("#admissao").val(res[0].admissao.split('-').reverse().join('/'));	
+				$("#img_membro").attr("src",res[0].foto);
+				$("#txtCod").val(res[0].cod);
+				$('input:radio[value='+res[0].sexo+']').prop('checked', true);
+				$("#estadoNatual").val(res[0].idEstadoAtual);
+				//setarCidade(idEstadoAtual, "txtCidade", res[0].idCidade);
+				//setarCidade(idEstadoNaturalidade, "txtNaturalidade", res[0].idNaturalidade);
+
 			});
 	}
 
@@ -453,7 +426,6 @@
         $('#example2').DataTable({
           "paging": true,
           "lengthChange": false,
-          "searching": false,
           "ordering": true,
           "info": true,
           "autoWidth": false
@@ -519,25 +491,25 @@
 		
 		$("[data-mask]").inputmask();
 		
-		$(".edit").click(function(){
+		$(".edit").css("cursor", "pointer").click(function(){
 			var cod = $(this).attr("u");
 			$('.form-control').attr("disabled", false);
 			$('.editar').attr("disabled", true);
 			getData(cod);
 		});
 		
-		$(".fa-eye").click(function(){
+		$(".fa-eye").css("cursor", "pointer").click(function(){
 			var cod = $(this).attr("u");
 			$('.form-control').attr("disabled", true);
 			$('.editar').attr("disabled", false);
 			getData(cod);
 		});
 		
-		$(".editar").click(function(){
+		$(".editar").css("cursor", "pointer").click(function(){
 			$('.form-control').attr("disabled", false);
 		});
 		
-		$(".btnRemove").click(function(){
+		$(".btnRemove").css("cursor", "pointer").click(function(){
 			var cod = $(this).attr("u");
 			//alert($(this).children().attr("codImg"));
 			var r = confirm("Deseja INATIVAR o membro?");
@@ -559,7 +531,7 @@
 			}
 		});
 		
-		$(".btnAtivar").click(function(){
+		$(".btnAtivar").css("cursor", "pointer").click(function(){
 			var cod = $(this).attr("u");
 			//alert($(this).children().attr("codImg"));
 			var r = confirm("Deseja ATIVAR o registro?");
